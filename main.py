@@ -45,6 +45,13 @@ class linkedinApi:
         signIn.click()
 
         time.sleep(2)
+        try:
+            response = Selector(text=self.driver.page_source)
+            welcome = response.css('.block .t-bold::text').get().strip()
+            print(f'\tWelcome {welcome}')
+        except:
+            time.sleep(60)
+            self.login()
     
     def scroll(self, total):
         SCROLL_PAUSE_TIME = 5
